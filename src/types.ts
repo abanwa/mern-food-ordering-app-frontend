@@ -28,6 +28,35 @@ export type Restaurant = {
   lastUpdated: string;
 };
 
+// we copied the enum we used for the order status in the order model/table in the backend for it here too. the | means the order status can only have one of the strings
+export type OrderStatus =
+  | "placed"
+  | "paid"
+  | "inProgress"
+  | "outForDelivery"
+  | "delivered";
+
+export type Order = {
+  _id: string;
+  restaurant: Restaurant;
+  user: User;
+  cartItems: {
+    menuItemId: string;
+    name: string;
+    quantity: string;
+  }[];
+  deliveryDetails: {
+    name: string;
+    addressLine1: string;
+    city: string;
+    email: string;
+  };
+  totalAmount: number;
+  status: OrderStatus;
+  createdAt: string;
+  restaurantId: string;
+};
+
 export type RestaurantSearchResponse = {
   data: Restaurant[];
   pagination: {
